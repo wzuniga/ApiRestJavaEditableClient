@@ -22,10 +22,17 @@
                         {{dataLabel}}
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-1">
                     <button ng-click="sendInformation()" class="btn btn-info">
                         Consultar
                     </button>
+                </div>
+                <div class="col-sm-1">
+                    <button ng-click="sendDataChanged()" class="btn btn-info">
+                        Guardar
+                    </button>
+                </div>
+                <div class="col-sm-1">
                 </div>
             </div>
             
@@ -63,6 +70,7 @@
         <script src="js/xml2json.min.js"></script>
         <script src="bootstrap/bootstrap.min.js"></script>
         <script src="angular/angular.min.js"></script>
+        <script src="js/constans.js"></script>
         <script src="js/controller.js"></script>
     </body>
 </html>

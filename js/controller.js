@@ -23,7 +23,6 @@ app.directive('editableTr', function () {
 
 app.controller("myCtrl", function ($scope, $http) {
 
-    $scope.listOfChange = [];
     $scope.selecData = [];
     $scope.selecValue = "";
 
@@ -82,7 +81,7 @@ app.controller("myCtrl", function ($scope, $http) {
         return data;
     };
 
-    $http.post('http://192.168.0.31:8080/combo/get',
+    $http.post('http://'+RESOURCE_PATH+'/combo/get',
             {
                 query: $scope.uno
             }, {
@@ -107,7 +106,7 @@ app.controller("myCtrl", function ($scope, $http) {
 
         $scope.refreshLabel(strValue);
 
-        $http.post("http://192.168.0.31:8080/label/get/",
+        $http.post('http://'+RESOURCE_PATH+'/label/get/',
                 {
                     query: $scope.dos
                 }, {
@@ -131,7 +130,7 @@ app.controller("myCtrl", function ($scope, $http) {
 
     $scope.send3 = function () {
         $scope.refreshGrilla($scope.dataLabel);
-        $http.post("http://192.168.0.31:8080/grilla/get/",
+        $http.post('http://'+RESOURCE_PATH+'/grilla/get/',
                 {
                     query: $scope.cinco
                 }, {
@@ -197,6 +196,31 @@ app.controller("myCtrl", function ($scope, $http) {
     /*
      Functions to change data
      */
+    $scope.listOfChange = [];
+
+    $scope.sendDataChanged = function(){
+
+        if ($scope.listOfChange.length == 0){
+            alert ("No se realizaron cambios");
+            return;
+        }
+        $http.post('http://'+RESOURCE_PATH+'/grilla/set',
+            {
+                query: $scope.uno
+            }, {
+            headers: {'Content-Type': 'application/json; charset=UTF-8'},
+            transformRequest: transformReq,
+            transformResponse: transformRes
+        })
+            .success(function (data) {
+                alert(data);
+            })
+            .error(function (data) {
+                alert("Error " + data);
+            });
+
+    }
+
     $scope.getInfoFrom = function (rowIndex, colIndex) {
         rowIndex++;
         colIndex++;
