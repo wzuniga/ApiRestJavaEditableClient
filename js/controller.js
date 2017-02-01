@@ -23,6 +23,8 @@ app.directive('editableTr', function () {
 
 app.controller("myCtrl", function ($scope, $http) {
 
+    $scope.pageNum = 0;
+
     $scope.selecData = [];
     $scope.selecValue = "";
 
@@ -165,6 +167,8 @@ app.controller("myCtrl", function ($scope, $http) {
                         console.log(err);
                     }
 
+                    $scope.reloadPage();
+
                     $scope.imgLoaderDown();
                     console.timeEnd("TimerName");
                 })
@@ -191,7 +195,21 @@ app.controller("myCtrl", function ($scope, $http) {
         $scope.fl = false;
     };
 
+    $scope.reloadPage = function () {
+        $scope.tableDataPage = $scope.tableData.slice(0,($scope.pageNum+1)*100);
+    };
 
+    $scope.nextPage = function(){
+        $scope.pageNum++;
+        $scope.reloadPage();
+    }
+
+    $scope.prevPage = function(){
+        if ($scope.pageNum == 0)
+            return;
+        $scope.pageNum--;
+        $scope.reloadPage();
+    }
 
     /*
      Functions to change data
@@ -205,13 +223,14 @@ app.controller("myCtrl", function ($scope, $http) {
             return;
         }
         $http.post('http://'+RESOURCE_PATH+'/grilla/set',
-            {
-                query: $scope.uno
-            }, {
-            headers: {'Content-Type': 'application/json; charset=UTF-8'},
-            transformRequest: transformReq,
-            transformResponse: transformRes
-        })
+                {
+                    query: $scope.uno
+                }, {
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'},
+                    transformRequest: transformReq,
+                    transformResponse: transformRes
+                })
             .success(function (data) {
                 alert(data);
             })

@@ -53,13 +53,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr  ng-repeat="ROW in tableData" >
-                                <td ng-init="rowNum = $index" style="cursor: not-allowed;">{{$index + 1}}</td>
+                            <tr  ng-repeat="ROW in tableDataPage" >
+                                <td ng-init="rowNum = $index + 100 * pageNum" style="cursor: not-allowed;">{{$index + 1 + 100 * pageNum}}</td>
                                 <td ng-repeat="COL in tableHead track by $index" editable-Tr row="{{rowNum}}" field="{{COL}}" ng-if="COL != 'Editado'" >{{ROW[COL].VALUE}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2"><button ng-click="prevPage()" class="btn btn-info">Anterior</button></div>
+                <div class="col-sm-6"></div>
+                <div class="col-sm-2"><button ng-click="nextPage()" class="btn btn-info">Siguiente</button></div>
                 <div class="col-sm-1"></div>
             </div>
             <editable-Tr></editable-Tr>
