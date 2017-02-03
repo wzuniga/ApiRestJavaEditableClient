@@ -1,22 +1,15 @@
 
-var createNewCombo = function(scope, var_In_Scope, query, place_holder, post_Function){
-    scope[var_In_Scope+"Value"] = "";
-    scope[var_In_Scope+"ValueOption"] = ['test'];
-    var comboObject = {
-        type: "Combo",
-        placeholder: place_holder,
+var createNewButton = function(scope, var_In_Scope, text, action){
+
+    var buttonObject = {
+        type: "Button",
+        text: text,
         varInScope: var_In_Scope,
         scope: scope,
-        valuePlace: var_In_Scope+"Value",
-        optionValuePlace: var_In_Scope+"ValueOption",
-        query: refreshLabel,
-        precedentes: [],
-        dependientes: [],
-        postFunction: post_Function,
-        
+        action: action
     };
 
-    return comboObject;
+    return buttonObject;
 }
 
 var refreshLabel = function(){
