@@ -14,14 +14,14 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             placeholder: "Segundo test"
         },
         {
-            type: "Label",
-            name: "label3",
-            placeholder: "OKOKOKO test"
+            type: "Combo",
+            name: "combo4",
+            placeholder: "x"
         },
         {
             type: "Label",
-            name: "label4",
-            placeholder: "x"
+            name: "label3",
+            placeholder: "OKOKOKO test"
         }
     ]
 

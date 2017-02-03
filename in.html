@@ -13,6 +13,7 @@
             <div class="row">
                 <div class="col-sm-4" ng-repeat="item in componentsView">
                     <dinamic-Label ng-if="item.type === 'Label'" name="{{item.varInScope}}"></dinamic-Label>
+                    <dinamic-Combo ng-if="item.type === 'Combo'" name="{{item.varInScope}}"></dinamic-Combo>
                 </div>
             </div>
         </div>
@@ -20,7 +21,8 @@
         <script src="angular/angular.min.js"></script>
         <script src="Controller/HtmlBuilder/HeadBuilder.js"></script>
         <script src="Controller/controller.js"></script>
-        <script src="Controller/Object/Label.js"></script>
+        <script src="Controller/Object/label.js"></script>
+        <script src="Controller/Object/combo.js"></script>
         <script src="Controller/building/builder.js"></script>
         <script src="Controller/Directives/directive.js"></script>
     </body>

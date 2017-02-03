@@ -7,7 +7,9 @@ var createNewLabel = function(scope, var_In_Scope, query, place_holder){
         varInScope : var_In_Scope,
         scope : scope,
         valuePlace : var_In_Scope+"Value",
-        query: refreshLabel
+        query: refreshLabel,
+        precedentes: [],
+        dependientes: []
     };
 
     return labelObject;
