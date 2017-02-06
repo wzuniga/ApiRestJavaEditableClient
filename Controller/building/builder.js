@@ -17,4 +17,3 @@ Builder = {
     buildCombo: comboBuilder,
     buildButton: buttonBuilder
 };
-

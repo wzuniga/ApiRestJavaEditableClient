@@ -35,6 +35,7 @@ var addDependiente = function(name){
 }
 
 var preFunction = function(){
+    console.log(this.precedentes);
     for (var precedente in this.precedentes){
         if(!this.precedentes[precedente])
             return false;
@@ -43,6 +44,7 @@ var preFunction = function(){
 }
 
 var depFunction = function(){
+    console.log(dependientes);
     var dep = this.dependientes;
     for(var i = 0; i < dep.length; i++){
         this.scope[dep[i]].precedentes[var_In_Scope] = true;
