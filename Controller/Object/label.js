@@ -1,5 +1,5 @@
 
-var createNewLabel = function(scope, var_In_Scope, query, place_holder){
+var createNewLabel = function(scope, var_In_Scope, query, place_holder, post_Function){
     scope[var_In_Scope+"Value"] = "";
     var labelObject = {
         type: "Label",

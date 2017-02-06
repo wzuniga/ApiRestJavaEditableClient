@@ -13,10 +13,10 @@ var createNewCombo = function(scope, var_In_Scope, query, post_Function){
         dependientes: [],
         addPrecedente: addPrecedente,
         addDependiente: addDependiente,
-        preFunction: preFunction,
-        depFunction: depFunction,
+    /**/preFunction: preFunction,
+    /**/depFunction: depFunction,
         postFunction: post_Function,
-        exec: exec
+    /**/exec: exec
     };
 
     return comboObject;
