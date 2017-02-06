@@ -15,13 +15,20 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
         },
         {
             type: "Combo",
-            name: "combo4",
-            placeholder: "x"
+            name: "combo4"
         },
         {
             type: "Label",
             name: "label3",
             placeholder: "OKOKOKO test"
+        },
+        {
+            type: "Button",
+            name: "button1",
+            text: "soy un boton",
+            action: function(){
+                alert(this.actionPath);
+            }
         }
     ]
 

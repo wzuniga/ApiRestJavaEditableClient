@@ -24,11 +24,10 @@ app.directive("dinamicCombo", function($compile) {
 app.directive("dinamicButton", function($compile) {
     return function(scope, element, attrs){
         var name = attrs['name'];
-        var val = scope[name]["valuePlace"];
-        var optionVal = scope[name]["optionValuePlace"];
-        var str = "<select ng-model='"+val+"' class='form-control margin-dinamic'>"+
-                        "<option ng-repeat='OPT in "+optionVal+" track by $index' value='{{OPT}}'>{{OPT}}</option>"+
-                  "</select>";
+        var functionPath = scope[name]["actionPath"];
+        var text = scope[name]["text"];
+        var str = "<button ng-click='"+functionPath+"()' class='btn btn-info'>"+text+
+                  "</button>";
         element.append($compile(str)(scope));
 	};
 });

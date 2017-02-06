@@ -1,12 +1,12 @@
 
 var createNewButton = function(scope, var_In_Scope, text, action){
-
+    scope[var_In_Scope+"Function"] = action;
     var buttonObject = {
         type: "Button",
         text: text,
         varInScope: var_In_Scope,
         scope: scope,
-        action: action
+        actionPath: var_In_Scope+"Function"
     };
 
     return buttonObject;

@@ -6,12 +6,16 @@ var addHead = function(object){
         HeadBuilder.scope[name] = createNewLabel(HeadBuilder.scope, name, "", object.placeholder);
         Builder.buildLabel(HeadBuilder.scope, "componentsView", name);
     }else if(object.type === "Combo"){
-        HeadBuilder.scope[name] = createNewCombo(HeadBuilder.scope, name, "", object.placeholder);
+        HeadBuilder.scope[name] = createNewCombo(HeadBuilder.scope, name, "");
+        //console.log(HeadBuilder.scope[name].exec());
         Builder.buildCombo(HeadBuilder.scope, "componentsView", name);
+    }else if(object.type === "Button"){
+        HeadBuilder.scope[name] = createNewButton(HeadBuilder.scope, name, object.text, object.action);
+        Builder.buildButton(HeadBuilder.scope, "componentsView", name);
     }
 }
 
 HeadBuilder = {
-    scope: "",
+    scope: undefined,
     add: addHead
 }
