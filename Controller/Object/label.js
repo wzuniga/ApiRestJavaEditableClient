@@ -15,7 +15,7 @@ var createNewLabel = function(scope, var_In_Scope, query, place_holder, post_Fun
         preFunction: preFunction,
         depFunction: depFunction,
         postFunction: post_Function,
-        exec: exec
+        exec: execL
     };
 
     return labelObject;
@@ -50,9 +50,10 @@ var depFunction = function(){
     }
 }
 
-var exec = async function(){
-    if(!this.preFunction())
+var execL = async function(){
+    alert("label");
+    /*if(!this.preFunction())
         return;
     await this.postFunction();
-    this.depFunction();
+    this.depFunction();*/
 }

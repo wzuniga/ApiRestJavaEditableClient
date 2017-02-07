@@ -6,27 +6,19 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
         {
             type: "Combo",
             name: "combo1",
+            resource: 'http://'+RESOURCE_PATH+'/combo/get',
+            refreshQuery: function(){
+                return {
+                    query: "select cardname from ocrd where cardtype = 'c'"
+                }
+            },
+            precedentes: {},
             dependientes: ["label1"],
-            post_Function: function(){
-
-                $http.post('http://'+RESOURCE_PATH+'/combo/get',
-                {
-                    query: $scope.uno
-                }, {
-                    headers: {'Content-Type': 'application/json; charset=UTF-8'},
-                    transformRequest: transformReq,
-                    transformResponse: transformRes
-                })
-                .success(function (data) {
-                    var x2js = new X2JS();
-                    data2 = x2js.xml_str2json(data);
-                    console.log(data);
-                    $scope.selecData = data2.COMBO.ELEMENT;
-                })
-                .error(function (data) {
-                    alert("Error " + data);
-                });
-                
+            succ_Function: function(){
+                alert("succ");
+            },
+            err_Function: function(){
+                alert("Error");
             }
         },
         {
@@ -37,7 +29,7 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             postFunction: function(){
 
             }
-        },
+        }/*,
         {
             type: "Button",
             name: "button1",
@@ -46,7 +38,7 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
                 var tes = $scope["button1"].text;
                 console.log(tes);
             }
-        }
+        }*/
     ]
 
     $scope.componentsView = [];
@@ -55,5 +47,9 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
         HeadBuilder.add($scope.listComponents[i]);
     }
     
+    for(item in $scope.listComponents){
+        //console.log($scope.listComponents[item].name);
+        $scope[$scope.listComponents[item].name].exec($http);
+    }
 
 });
