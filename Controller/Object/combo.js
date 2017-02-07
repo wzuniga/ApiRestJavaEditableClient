@@ -11,8 +11,8 @@ var createNewCombo = function(scope, var_In_Scope, resource, refreshQuery, prece
         optionValuePlace: var_In_Scope+"ValueOption",
         resource: resource,
         refreshQuery: refreshQuery,
-        precedentes: {},
-        dependientes: [],
+        precedentes: precedentes,
+        dependientes: dependientes,
         addPrecedente: addPrecedenteC,
         addDependiente: addDependienteC,
     /**/preFunction: preFunctionC,
@@ -35,8 +35,6 @@ var addDependienteC = function(name){
 }
 
 var preFunctionC = function(){
-    console.log(this.precedentes);
-    alert("pass over");
     for (var precedente in this.precedentes){
         if(!this.precedentes[precedente])
             return false;
@@ -45,22 +43,21 @@ var preFunctionC = function(){
 }
 
 var depFunctionC = function(){
-    console.log(dependientes);
+    console.log(this.dependientes);
     var dep = this.dependientes;
     for(var i = 0; i < dep.length; i++){
-        this.scope[dep[i]].precedentes[var_In_Scope] = true;
+        this.scope[dep[i]].precedentes[this.varInScope] = true;
         this.scope[dep[i]].exec();
     }
 }
 
 var execC = async function(http){
-    alert("pass by exec");
     if(!this.preFunction())
         return;
-    alert("pass pre");
-    await this.postFunction(http);
-    alert("works!!");
-    this.depFunctionC();
+    var response = await this.postFunction(http);
+    this.succFunction(response.data);
+    this.scope.$digest();
+    this.depFunction();
 }
 
 var postFunctionC = async function(http){
@@ -78,15 +75,6 @@ var postFunctionC = async function(http){
                     headers: {'Content-Type': 'application/json; charset=UTF-8'},
                     transformRequest: transformReq,
                     transformResponse: transformRes
-                });/*
-                .success(function (data) {
-                    var x2js = new X2JS();
-                    data2 = x2js.xml_str2json(data);
-                    console.log(data);
-                    $scope.selecData = data2.COMBO.ELEMENT;
-                })
-                .error(function (data) {
-                    alert("Error " + data);
-                });*/
+                });
     return prom;    
 }

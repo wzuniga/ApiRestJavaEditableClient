@@ -18,8 +18,8 @@ var addHead = function(object){
                                                  object.refreshQuery,
                                                  object.precedentes,
                                                  object.dependientes,
-                                                 object.succ_Function,
-                                                 object.err_Function);
+                                                 object.succFunction,
+                                                 object.errFunction);
 
         Builder.buildCombo(HeadBuilder.scope, "componentsView", name);
 

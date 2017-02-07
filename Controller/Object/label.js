@@ -51,7 +51,7 @@ var depFunction = function(){
 }
 
 var execL = async function(){
-    alert("label");
+    alert("labelllll");
     /*if(!this.preFunction())
         return;
     await this.postFunction();

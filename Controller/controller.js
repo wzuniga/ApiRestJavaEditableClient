@@ -14,10 +14,13 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             },
             precedentes: {},
             dependientes: ["label1"],
-            succ_Function: function(){
-                alert("succ");
+            succFunction: function(data){
+                var x2js = new X2JS();
+                data2 = x2js.xml_str2json(data);
+                console.log(data);
+                $scope["combo1ValueOption"] = data2.COMBO.ELEMENT;
             },
-            err_Function: function(){
+            errFunction: function(err){
                 alert("Error");
             }
         },
@@ -48,7 +51,6 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
     }
     
     for(item in $scope.listComponents){
-        //console.log($scope.listComponents[item].name);
         $scope[$scope.listComponents[item].name].exec($http);
     }
 
