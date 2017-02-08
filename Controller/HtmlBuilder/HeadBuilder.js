@@ -5,9 +5,13 @@ var addHead = function(object){
     if(object.type === "Label"){
         HeadBuilder.scope[name] = createNewLabel(HeadBuilder.scope,
                                                  object.name,
-                                                 "",
                                                  object.placeholder,
-                                                 object.postFunction);
+                                                 object.resource,
+                                                 object.refreshQuery,
+                                                 object.precedentes,
+                                                 object.dependientes,
+                                                 object.succFunction,
+                                                 object.errFunction);
 
         Builder.buildLabel(HeadBuilder.scope, "componentsView", name);
 

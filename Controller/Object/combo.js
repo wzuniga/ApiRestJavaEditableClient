@@ -1,6 +1,6 @@
 
 var createNewCombo = function(scope, var_In_Scope, resource, refreshQuery, precedentes, dependientes, succ_Function, err_Function){
-    scope[var_In_Scope+"Value"] = "";
+    scope[var_In_Scope+"Value"] = "A PEACE TREATY";
     scope[var_In_Scope+"ValueOption"] = ['test'];
     scope[var_In_Scope+"Query"] = "";
     var comboObject = {
@@ -42,12 +42,12 @@ var preFunctionC = function(){
     return true;
 }
 
-var depFunctionC = function(){
+var depFunctionC = function(http){
     console.log(this.dependientes);
     var dep = this.dependientes;
     for(var i = 0; i < dep.length; i++){
         this.scope[dep[i]].precedentes[this.varInScope] = true;
-        this.scope[dep[i]].exec();
+        //this.scope[dep[i]].exec(http);
     }
 }
 
@@ -57,7 +57,7 @@ var execC = async function(http){
     var response = await this.postFunction(http);
     this.succFunction(response.data);
     this.scope.$digest();
-    this.depFunction();
+    this.depFunction(http);
 }
 
 var postFunctionC = async function(http){

@@ -17,7 +17,7 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             succFunction: function(data){
                 var x2js = new X2JS();
                 data2 = x2js.xml_str2json(data);
-                console.log(data);
+                //console.log(data);
                 $scope["combo1ValueOption"] = data2.COMBO.ELEMENT;
             },
             errFunction: function(err){
@@ -27,21 +27,39 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
         {
             type: "Label",
             name: "label1",
-            placeholder: "test de Place Holder",
+            placeholder: "codigo",
+            resource: 'http://'+RESOURCE_PATH+'/label/get/',
+            refreshQuery: function(){
+                return {
+                    query: "select cardcode from ocrd where cardname = '" + $scope["combo1Value"] +"'"
+                }
+            },
             precedentes: {combo1: false},
-            postFunction: function(){
-
+            dependientes: [],
+            succFunction: function(data){
+                var x2js = new X2JS();
+                data2 = x2js.xml_str2json(data);
+                //console.log(data);
+                //console.log($scope["combo1Value"]);
+                if (typeof data2.LABEL.ELEMENT === "string")
+                    $scope["label1Value"] = data2.LABEL.ELEMENT;
+                else
+                    $scope["label1Value"] = data2.LABEL.ELEMENT[0];
+            },
+            errFunction: function(data){
+                alert("Error");
             }
-        }/*,
+        },
         {
             type: "Button",
             name: "button1",
             text: "soy un botón",
             action: function(){
                 var tes = $scope["button1"].text;
-                console.log(tes);
+                alert($scope["combo1Value"]);
+                $scope["label1"].exec($http);
             }
-        }*/
+        }
     ]
 
     $scope.componentsView = [];
