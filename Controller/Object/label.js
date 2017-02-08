@@ -34,7 +34,6 @@ var addDependienteL = function(name){
 }
 
 var preFunctionL = function(){
-    console.log(this.precedentes);
     for (var precedente in this.precedentes){
         if(!this.precedentes[precedente])
             return false;
@@ -51,11 +50,9 @@ var depFunctionL = function(){
 }
 
 var execL = async function(http){
-    alert("labelllll");
     if(!this.preFunction())
         return;
     var response = await this.postFunction(http);
-    console.log(this);
     this.succFunction(response.data);
     this.scope.$digest();
     this.depFunction();

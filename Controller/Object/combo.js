@@ -43,7 +43,6 @@ var preFunctionC = function(){
 }
 
 var depFunctionC = function(http){
-    console.log(this.dependientes);
     var dep = this.dependientes;
     for(var i = 0; i < dep.length; i++){
         this.scope[dep[i]].precedentes[this.varInScope] = true;

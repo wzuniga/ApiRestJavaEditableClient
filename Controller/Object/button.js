@@ -20,10 +20,5 @@ var refreshLabel = function(){
 }
 
 var execB = async function(){
-    alert("button alerto");
+    
 }
-/*
-function d (val1) {
-        this.scope[this.varInScope] = "select cardcode from ocrd where cardname = '" + val1 + "'";
-};
-*/

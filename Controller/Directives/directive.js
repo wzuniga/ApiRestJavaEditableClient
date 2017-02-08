@@ -15,8 +15,8 @@ app.directive("dinamicCombo", function($compile) {
         var val = scope[name]["valuePlace"];
         console.log(val);
         var optionVal = scope[name]["optionValuePlace"];
-        var str = "<select ng-model='"+val+"' class='form-control margin-dinamic'>"+
-                        "<option ng-repeat='OPT in "+optionVal+" track by $index' value='{{OPT}}'>{{OPT}}</option>"+
+        var str = "<select ng-options='OPT for OPT in "+optionVal+"' ng-init='temp = \""+val+"\"' ng-model='"+val+"' ng-change='ch(temp, "+val+")' class='form-control margin-dinamic'>"+
+
                   "</select>";
         element.append($compile(str)(scope));
 	};

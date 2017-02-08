@@ -5,7 +5,7 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
     $scope.listComponents = [
         {
             type: "Combo",
-            name: "combo1",
+            name: "combo",
             resource: 'http://'+RESOURCE_PATH+'/combo/get',
             refreshQuery: function(){
                 return {
@@ -17,8 +17,7 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             succFunction: function(data){
                 var x2js = new X2JS();
                 data2 = x2js.xml_str2json(data);
-                //console.log(data);
-                $scope["combo1ValueOption"] = data2.COMBO.ELEMENT;
+                $scope["comboValueOption"] = data2.COMBO.ELEMENT;
             },
             errFunction: function(err){
                 alert("Error");
@@ -31,16 +30,14 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             resource: 'http://'+RESOURCE_PATH+'/label/get/',
             refreshQuery: function(){
                 return {
-                    query: "select cardcode from ocrd where cardname = '" + $scope["combo1Value"] +"'"
+                    query: "select cardcode from ocrd where cardname = '" + $scope["comboValue"] +"'"
                 }
             },
-            precedentes: {combo1: false},
+            precedentes: {combo: false},
             dependientes: [],
             succFunction: function(data){
                 var x2js = new X2JS();
                 data2 = x2js.xml_str2json(data);
-                //console.log(data);
-                //console.log($scope["combo1Value"]);
                 if (typeof data2.LABEL.ELEMENT === "string")
                     $scope["label1Value"] = data2.LABEL.ELEMENT;
                 else
@@ -55,8 +52,6 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             name: "button1",
             text: "soy un botón",
             action: function(){
-                var tes = $scope["button1"].text;
-                alert($scope["combo1Value"]);
                 $scope["label1"].exec($http);
             }
         }
@@ -72,4 +67,7 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
         $scope[$scope.listComponents[item].name].exec($http);
     }
 
+    $scope.ch = function(where, val){
+        $scope[where] = val;
+    }
 });
