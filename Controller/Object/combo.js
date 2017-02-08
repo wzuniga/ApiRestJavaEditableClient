@@ -1,6 +1,6 @@
 
 var createNewCombo = function(scope, var_In_Scope, resource, refreshQuery, precedentes, dependientes, succ_Function, err_Function){
-    scope[var_In_Scope+"Value"] = "A PEACE TREATY";
+    scope[var_In_Scope+"Value"] = "";
     scope[var_In_Scope+"ValueOption"] = ['test'];
     scope[var_In_Scope+"Query"] = "";
     var comboObject = {

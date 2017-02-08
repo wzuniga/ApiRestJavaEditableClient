@@ -2,7 +2,7 @@ var app = angular.module('myApp', []);
 
 app.controller("myCtrl", function ($scope, $http, $compile) {
 
-    $scope.listComponents = [
+    var COMPONENTS = [
         {
             type: "Combo",
             name: "combo",
@@ -56,6 +56,11 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             }
         }
     ]
+
+
+    /* No modificar el codigo a partir de este punto*/
+    
+    $scope.listComponents = COMPONENTS;
 
     $scope.componentsView = [];
     HeadBuilder.scope = $scope;
