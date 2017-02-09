@@ -1,9 +1,9 @@
-var HeadBuilder;
+var HtmlBuilder;
 
 var addHead = function(object){
     var name = object.name;
     if(object.type === "Label"){
-        HeadBuilder.scope[name] = createNewLabel(HeadBuilder.scope,
+        HtmlBuilder.scope[name] = createNewLabel(HtmlBuilder.scope,
                                                  object.name,
                                                  object.placeholder,
                                                  object.resource,
@@ -13,10 +13,10 @@ var addHead = function(object){
                                                  object.succFunction,
                                                  object.errFunction);
 
-        Builder.buildLabel(HeadBuilder.scope, "componentsView", name);
+        Builder.buildLabel(HtmlBuilder.scope, "componentsView", name);
 
     }else if(object.type === "Combo"){
-        HeadBuilder.scope[name] = createNewCombo(HeadBuilder.scope,
+        HtmlBuilder.scope[name] = createNewCombo(HtmlBuilder.scope,
                                                  object.name,
                                                  object.resource,
                                                  object.refreshQuery,
@@ -25,19 +25,45 @@ var addHead = function(object){
                                                  object.succFunction,
                                                  object.errFunction);
 
-        Builder.buildCombo(HeadBuilder.scope, "componentsView", name);
+        Builder.buildCombo(HtmlBuilder.scope, "componentsView", name);
 
     }else if(object.type === "Button"){
-        HeadBuilder.scope[name] = createNewButton(HeadBuilder.scope,
+        HtmlBuilder.scope[name] = createNewButton(HtmlBuilder.scope,
                                                   object.name,
                                                   object.text,
                                                   object.action);
-        Builder.buildButton(HeadBuilder.scope, "componentsView", name);
+        Builder.buildButton(HtmlBuilder.scope, "componentsView", name);
 
     }
 }
 
-HeadBuilder = {
+var addBody = function(object){
+    
+    function isEmptyJSON(obj) {
+        for(var i in obj) { return false; }
+        return true;
+    }   
+
+    if(isEmptyJSON(object)){
+        return;
+    }
+    
+    if(object.type === "Grill"){
+        HtmlBuilder.scope[name] = createNewGrill(HtmlBuilder.scope,
+                                                 object.name,
+                                                 object.resource,
+                                                 object.refreshQuery,
+                                                 object.precedentes,
+                                                 object.dependientes,
+                                                 object.succFunction,
+                                                 object.errFunction);
+        Builder.buildButton(HtmlBuilder.scope, "componentsViewBody", name);
+
+    }
+}
+
+HtmlBuilder = {
     scope: undefined,
-    add: addHead
+    addHead: addHead,
+    addBody: addBody
 }

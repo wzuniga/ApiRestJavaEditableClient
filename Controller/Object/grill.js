@@ -1,10 +1,9 @@
 
-var createNewGrill = function(scope, var_In_Scope, place_holder, resource, refreshQuery, precedentes, dependientes, succ_Function, err_Function){
+var createNewGrill = function(scope, var_In_Scope, resource, refreshQuery, precedentes, dependientes, succ_Function, err_Function){
     scope[var_In_Scope+"Value"] = "";
 
     var labelObject = {
         type: "Label",
-        placeholder : place_holder,
         varInScope : var_In_Scope,
         scope : scope,
         valuePlace : var_In_Scope+"Value",
