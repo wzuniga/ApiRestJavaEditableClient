@@ -1,7 +1,7 @@
 
 var createNewCombo = function(scope, var_In_Scope, resource, refreshQuery, precedentes, dependientes, succ_Function, err_Function){
     scope[var_In_Scope+"Value"] = "";
-    scope[var_In_Scope+"ValueOption"] = ['test'];
+    scope[var_In_Scope+"ValueOption"] = [];
     scope[var_In_Scope+"Query"] = "";
     var comboObject = {
         type: "Combo",
@@ -53,7 +53,12 @@ var depFunctionC = function(http){
 var execC = async function(http){
     if(!this.preFunction())
         return;
-    var response = await this.postFunction(http);
+    try{
+        var response = await this.postFunction(http);
+    }catch(err){
+        console.log(err);
+        return;
+    }
     this.succFunction(response.data);
     this.scope.$digest();
     this.depFunction(http);

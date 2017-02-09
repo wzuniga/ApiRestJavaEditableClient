@@ -54,7 +54,7 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             action: function(){
                 $scope["label1"].exec($http);
             }
-        }
+       }
     ]
 
 

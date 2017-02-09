@@ -13,7 +13,6 @@ app.directive("dinamicCombo", function($compile) {
     return function(scope, element, attrs){
         var name = attrs['name'];
         var val = scope[name]["valuePlace"];
-        console.log(val);
         var optionVal = scope[name]["optionValuePlace"];
         var str = "<select ng-options='OPT for OPT in "+optionVal+"' ng-init='temp = \""+val+"\"' ng-model='"+val+"' ng-change='ch(temp, "+val+")' class='form-control margin-dinamic'>"+
 
