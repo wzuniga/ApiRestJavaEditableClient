@@ -18,7 +18,7 @@ var buttonBuilder = function(scope, element, buttonName){
 }
 
 var grillBuilder = function(scope, element, grillName){
-    scope[element].push(scope[buttonName]);
+    scope[element].push(scope[grillName]);
 }
 
 Builder = {

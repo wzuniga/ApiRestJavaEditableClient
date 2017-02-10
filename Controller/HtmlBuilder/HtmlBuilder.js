@@ -39,6 +39,8 @@ var addHead = function(object){
 
 var addBody = function(object){
     
+    var name = object.name;
+
     function isEmptyJSON(obj) {
         for(var i in obj) { return false; }
         return true;

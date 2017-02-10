@@ -43,19 +43,27 @@ var preFunctionL = function(){
 
 var depFunctionL = function(){
     var dep = this.dependientes;
+    console.log(dep);
     for(var i = 0; i < dep.length; i++){
         this.scope[dep[i]].precedentes[this.varInScope] = true;
+        console.log(this.scope[dep[i]].precedentes[this.varInScope]);
         //this.scope[dep[i]].exec();
     }
 }
 
 var execL = async function(http){
+    alert("1");
     if(!this.preFunction())
         return;
+    alert("2");
     var response = await this.postFunction(http);
+    alert("3");
     this.succFunction(response.data);
+    alert("4");
     this.scope.$digest();
+    alert("5");
     this.depFunction();
+    alert("termine");
 }
 
 var postFunctionL = async function(http){
@@ -74,5 +82,5 @@ var postFunctionL = async function(http){
                     transformRequest: transformReq,
                     transformResponse: transformRes
                 });
-    return prom;    
+    return prom;
 }

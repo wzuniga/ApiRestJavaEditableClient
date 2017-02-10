@@ -1,9 +1,10 @@
 
 var createNewGrill = function(scope, var_In_Scope, resource, refreshQuery, precedentes, dependientes, succ_Function, err_Function){
-    scope[var_In_Scope+"Value"] = "";
+    scope[var_In_Scope+"ValueTable"] = [];
+    scope[var_In_Scope+"ValueHead"] = [];
 
-    var labelObject = {
-        type: "Label",
+    var grillObject = {
+        type: "Grill",
         varInScope : var_In_Scope,
         scope : scope,
         valuePlace : var_In_Scope+"Value",
@@ -11,28 +12,30 @@ var createNewGrill = function(scope, var_In_Scope, resource, refreshQuery, prece
         refreshQuery: refreshQuery,
         precedentes: precedentes,
         dependientes: dependientes,
-        addPrecedente: addPrecedenteL,
-        addDependiente: addDependienteL,
-    /**/preFunction: preFunctionL,
-    /**/depFunction: depFunctionL,
+        addPrecedente: addPrecedenteG,
+        addDependiente: addDependienteG,
+    /**/preFunction: preFunctionG,
+    /**/depFunction: depFunctionG,
         succFunction: succ_Function,
         errFunction: err_Function,
-    /**/postFunction: postFunctionL,
-    /**/exec: execL
+    /**/postFunction: postFunctionG,
+    /**/exec: execG
     };
 
-    return labelObject;
+    console.log(precedentes);
+    return grillObject;
 }
 
-var addPrecedenteL = function(name){
+var addPrecedenteG = function(name){
     this.precedentes[name] = false;
 }
 
-var addDependienteL = function(name){
+var addDependienteG = function(name){
     this.addDependiente.push(name);
 }
 
-var preFunctionL = function(){
+var preFunctionG = function(){
+    console.log(this.precedentes);
     for (var precedente in this.precedentes){
         if(!this.precedentes[precedente])
             return false;
@@ -40,24 +43,29 @@ var preFunctionL = function(){
     return true;
 }
 
-var depFunctionL = function(){
+var depFunctionG = function(){
     var dep = this.dependientes;
+    console.log(dep);
+    console.log("grill");
     for(var i = 0; i < dep.length; i++){
         this.scope[dep[i]].precedentes[this.varInScope] = true;
         //this.scope[dep[i]].exec();
     }
 }
 
-var execL = async function(http){
+var execG = async function(http){
+    
     if(!this.preFunction())
         return;
+    alert("pase");
     var response = await this.postFunction(http);
     this.succFunction(response.data);
     this.scope.$digest();
     this.depFunction();
+    console.log("sipase");
 }
 
-var postFunctionL = async function(http){
+var postFunctionG = async function(http){
 
     var transformReq = function (data) {
         data2 = JSON.stringify(data);

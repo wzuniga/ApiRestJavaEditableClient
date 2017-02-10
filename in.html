@@ -25,8 +25,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-
+                <div class="col-sm-12" ng-repeat="item in componentsViewBody">
+                    <dinamic-Grill ng-if="item.type === 'Grill'" name="{{item.varInScope}}"></dinamic-grill>
                 </div>
             </div>
         </div>
@@ -43,6 +43,7 @@
     <script src="Controller/Object/label.js"></script>
     <script src="Controller/Object/combo.js"></script>
     <script src="Controller/Object/button.js"></script>
+    <script src="Controller/Object/grill.js"></script>
     <script src="Controller/building/builder.js"></script>
     <script src="Controller/Directives/directive.js"></script>
 </body>

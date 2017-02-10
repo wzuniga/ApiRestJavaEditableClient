@@ -51,8 +51,12 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             type: "Button",
             name: "button1",
             text: "soy un botón",
-            action: function(){
-                $scope["label1"].exec($http);
+            action: async function(){
+                alert("uno");
+                await $scope["label1"].exec($http);
+                alert("ahora voy a");
+                alert($scope["grill1"].precedentes["label1"]);
+                $scope["grill1"].exec($http);
             }
        }
     ]
@@ -69,32 +73,32 @@ app.controller("myCtrl", function ($scope, $http, $compile) {
             precedentes: {label1: false},
             dependientes: [],
             succFunction: function(data){
-                /*
+                
                 var x2js = new X2JS();
                 var data2 = x2js.xml_str2json(data);
-                console.log(data);
-                $scope.tableData = data2.GRILL.ROW;
-                $scope.tableHead = data2.GRILL.NAME;
+                console.log("Llego La data");
+                $scope["grill1ValueTable"] = data2.GRILL.ROW;
+                $scope["grill1ValueHead"] = data2.GRILL.NAME;
 
                 try {
                     if (data2.GRILL.ROW.length === undefined)
-                        $scope.tableData = new Array(data2.GRILL.ROW);
+                        $scope["grill1ValueTable"] = new Array(data2.GRILL.ROW);
                 } catch (err) {
                     console.log(err);
                 }
 
 
                 try {
-                    var temp = $scope.tableData;
+                    var temp = $scope["grill1ValueTable"];
                     for (var i = 0; i < temp.length; i++) {
-                        for (var j = 0; j < $scope.tableHead.length; j++) {
-                            if (temp[i][$scope.tableHead[j]].length !== undefined)
-                                temp[i][$scope.tableHead[j]] = temp[i][$scope.tableHead[j]][0];
+                        for (var j = 0; j < $scope["grill1ValueHead"].length; j++) {
+                            if (temp[i][$scope["grill1ValueHead"][j]].length !== undefined)
+                                temp[i][$scope["grill1ValueHead"][j]] = temp[i][$scope["grill1ValueHead"][j]][0];
                         }
                     }
                 } catch (err) {
                     console.log(err);
-                }*/
+                }
             },
             errFunction: function(data){
                 alert("Error");
